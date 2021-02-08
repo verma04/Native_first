@@ -39,23 +39,24 @@
 // export default store(reducers, composeEnhancers(applyMiddleware(...middleware)));
 
 
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware  ,compose } from 'redux'
 import { composeWithDevTools } from 'remote-redux-devtools'
 const middlewares = [thunk];
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
-const composeEnhancers = composeWithDevTools({
-  realtime: true,
-  name: 'Your Instance Name',
-  hostname: 'localhost',
-  port: 1024 // the port your remotedev server is running at
-})
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(
-    applyMiddleware(...middlewares)
-  )
-)
+
+const composeEnhancers =
+  typeof window === 'object' &&
+  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ?   
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+      // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+    }) : compose;
+    
+    const enhancer =  composeWithDevTools(
+      applyMiddleware(...middlewares),
+      // other store enhancers if any
+    );
+    const store = createStore(rootReducer, enhancer);
 
 export default  store;

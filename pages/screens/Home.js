@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { View, Button, Text, StyleSheet } from "react-native";
 import { connect } from "react-redux";
-const Home = ({ navigation , auth }) => {
+import { loginUser, logoutUser} from '../../store/actons/UserAction'
+const Home = ({ navigation , auth : {user}  , logoutUser }) => {
  
   return (
     <View style={styles.center}>
-      <Text>This is the home screen</Text>
+      <Text>This is the home screen{user.email}</Text>
       <Button
         title="Go to About Screen"
-        onPress={() => navigation.navigate("About")} // We added an onPress event which would navigate to the About screen
+        onPress={() => logoutUser()} // We added an onPress event which would navigate to the About screen
       />
     </View>
   );
@@ -28,5 +29,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { }
-)(Home);
+  {  logoutUser }
+)(Home); 

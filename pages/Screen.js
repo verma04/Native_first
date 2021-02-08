@@ -6,14 +6,13 @@ import MainStackNavigator  from './screens/auth.js/authnavigator'
 import { NavigationContainer } from "@react-navigation/native";
 import DrawerNavigator from "./navigation/DrawerNavigator";
 import Auth from './screens/auth.js/authnavigator'
-
+import AsyncStorage from '@react-native-community/async-storage'
+import jwt_decode from "jwt-decode";
+import {  setCurrentUser } from '../store/actons/UserAction'
 
 const main = ({ navigation , auth }) => {
 
-  useEffect(() => {
-    // Update the document title using the browser API
-  console.log(auth)
-  });
+
 
   if(auth.isAuthenticated === false){
     return(
