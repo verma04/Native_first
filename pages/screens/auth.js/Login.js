@@ -1,7 +1,8 @@
 import React , {useState} from "react";
 import { Platform, StyleSheet, Text,  TextInput, TouchableOpacity, View} from "react-native";
 import { connect } from "react-redux";
-import { loginUser} from '../../../store/actons/UserAction'
+import { loginUser} from '../../../store/actons/UserAction';
+
 const Login = ({ loginUser , errors }) => {
 
   console.log(errors)
@@ -63,6 +64,7 @@ const Login = ({ loginUser , errors }) => {
          >
            <Text style={styles.submitButtonText}> Submit </Text>
          </TouchableOpacity>
+       
        </View>
      
  

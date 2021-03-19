@@ -79,7 +79,7 @@ export const logoutUser = () => dispatch => {
   
    AsyncStorage.removeItem('jwtToken');
   // Remove auth header for future requestss
-  setAuthToken(false);
+  
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
  

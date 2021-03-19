@@ -4,6 +4,12 @@ import { connect } from "react-redux";
 import { loginUser, logoutUser} from '../../store/actons/UserAction'
 const Home = ({ navigation , auth : {user}  , logoutUser }) => {
  
+  useEffect(async () => {
+    
+    console.log(user)
+    
+});
+
   return (
     <View style={styles.center}>
       <Text>This is the home screen{user.email}</Text>
